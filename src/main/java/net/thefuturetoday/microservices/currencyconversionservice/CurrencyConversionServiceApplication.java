@@ -1,9 +1,11 @@
 package net.thefuturetoday.microservices.currencyconversionservice;
 
+import brave.sampler.Sampler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EnableFeignClients("net.thefuturetoday.microservices.currencyconversionservice")
@@ -14,4 +16,10 @@ public class CurrencyConversionServiceApplication {
 		SpringApplication.run(CurrencyConversionServiceApplication.class, args);
 	}
 
+	@Bean
+	//creating a sampler called always sampler
+	public Sampler defaultSampler()
+	{
+		return Sampler.ALWAYS_SAMPLE;
+	}
 }
